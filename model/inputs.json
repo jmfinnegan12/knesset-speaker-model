@@ -1,0 +1,12 @@
+{
+  "_about": "The forecast's inputs. The Model page (model/model.js) reads this file; edit here only. Probabilities are 0-1.",
+  "as_of": "2026-11-12",
+  "contracts": ["Nov 13", "Nov 18", "Dec 1", "Jan 1"],
+  "inputs": {
+    "P0": {"value": 0.005, "note": "elected before the Nov 13 cutoff (23:59 ET Nov 12); no sitting scheduled"},
+    "A":  {"value": 0.88,  "note": "the scheduled vote is held by 23:59 ET Nov 17"},
+    "B":  {"value": 0.95,  "note": "someone is elected, given the vote is held"},
+    "C":  {"value": 0.70,  "note": "elected by 23:59 ET Nov 30, given not by Nov 17"},
+    "D":  {"value": 0.50,  "note": "elected by 23:59 ET Dec 31, given not by Nov 30"}
+  }
+}

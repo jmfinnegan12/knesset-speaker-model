@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Model · When will the Knesset elect a Speaker? · Event Neutral</title>
+<link rel="stylesheet" href="https://eventneutral.com/kit/v1/kit.css?v=3">
+<script src="https://eventneutral.com/kit/v1/theme.js"></script>
+<style>
+  #tree { max-width: 640px; margin: 14px 0 6px; }
+  #tree .branch { font-size: 16.5px; font-weight: 600; fill: var(--ink); }
+  #tree .val { font-size: 16.5px; font-weight: 650; fill: var(--ink); }
+  #tree .leaf { font-size: 15.5px; fill: var(--ink-soft); }
+  #tree .leaf-val { font-size: 15.5px; fill: var(--ink); font-variant-numeric: tabular-nums; }
+  #ladder { margin: 14px 0 4px; }
+  #ladder text { font-variant-numeric: tabular-nums; }
+  #ladder .plot-hit { cursor: ew-resize; touch-action: pan-y; }
+  #ladder .plot-hit:focus-visible { outline: none; }
+  .hint { margin: 2px 0 0; }
+  .say { font-size: 21px; line-height: 1.45; margin: 14px 0 6px; max-width: 34em; }
+  .say b { font-weight: 650; font-variant-numeric: tabular-nums; }
+  .legend { font-size: 14.5px; color: var(--ink-soft); margin: 4px 0 0; }
+  .inputs-head { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; margin: 40px 0 6px; }
+  .inputs-head h2 { margin: 0; }
+  .group { border-top: 1px solid var(--line); padding: 18px 0 6px; }
+  .field { display: grid; grid-template-columns: minmax(0, 1fr) minmax(140px, 260px) 110px; column-gap: 20px; align-items: center; padding: 10px 0 12px; }
+  .field .name { line-height: 1.3; font-weight: 600; }
+  .field .note { grid-column: 1 / -1; font-size: 15.5px; color: var(--ink-soft); margin: 4px 0 0; }
+  .field .en-num input { width: 68px; }
+  .end { margin-top: 44px; }
+  .end dl { margin: 0 0 16px 20px; }
+  .end dt { font-weight: 600; margin-top: 12px; }
+  .end dd { margin: 2px 0 0; color: var(--ink-soft); max-width: 66ch; }
+  .end ul { margin-left: 20px; }
+  @media (max-width: 640px) {
+    .say { font-size: 19px; }
+    .field { grid-template-columns: minmax(0, 1fr) auto; row-gap: 6px; }
+    .field .name { grid-column: 1 / -1; }
+  }
+</style>
+</head>
+<body>
+
+<header class="bar">
+  <div class="wrap bar-inner">
+    <a class="brand" href="https://eventneutral.com/">Event&nbsp;Neutral</a>
+    <nav class="nav">
+      <a href="https://eventneutral.com/">Home</a>
+      <a href="https://eventneutral.com/about/">About</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <div class="wrap">
+    <div class="kicker">Started 2026-11-12</div>
+    <h1>When will the Knesset elect a Speaker?</h1>
+    <nav class="wiki"><a href="../">Question</a> <a href="./" aria-current="page">Model</a> <a href="../rules/">Rules</a></nav>
+    <p class="src"><a href="https://github.com/jmfinnegan12/knesset-speaker-model">GitHub</a> · <a href="https://github.com/jmfinnegan12/knesset-speaker-model/issues/new">suggest a change</a> · <a href="https://github.com/jmfinnegan12/knesset-speaker-model/blob/main/CONTRIBUTING.md">how to contribute</a></p>
+
+    <h2>The Nov 17 vote</h2>
+    <p class="measure">Ohana has set the vote for Nov 17. Either it is held or it is not; if it is held, either someone is elected or no one is.</p>
+    <div class="en-chart" id="tree"></div>
+
+    <h2>The forecast</h2>
+    <p class="measure">Chance a Speaker has been elected by the end of each day. A Speaker can only be elected at a plenum sitting, and the plenum sits Monday to Wednesday,<sup class="fn"><a href="#s9">9</a></sup> so the chance rises only on those days. The jump on Tuesday Nov 17 is the scheduled vote.</p>
+    <div class="en-chart" id="ladder"></div>
+    <p class="legend">Open circles: the last day each contract covers. <span id="legend" hidden>Dashed line: the 2026-11-12 values.</span></p>
+    <p class="muted hint">Drag across the chart to pick a day.</p>
+    <p class="say" id="say" aria-live="polite"></p>
+    <p class="legend" id="contracts"></p>
+
+    <div class="inputs-head">
+      <h2>Inputs</h2>
+      <button class="en-btn" id="reset" type="button">Reset</button>
+    </div>
+    <div id="inputs"></div>
+
+    <div class="end">
+      <details class="en-q">
+        <summary>Why these numbers</summary>
+        <dl>
+          <dt>A. Vote held by Nov 17: 88%</dt>
+          <dd>13 of 13 scheduled Knesset Speaker votes were held on the day; the one outgoing Speaker who faced a majority demand, in 2020, blocked the vote and it was held 10 days late, after a Supreme Court order.<sup class="fn"><a href="#s1">1</a>,<a href="#s2">2</a></sup> This time Ohana set the date himself and said he would respect the majority's will, and 67 members signed the demand.<sup class="fn"><a href="#s3">3</a></sup> A delay of hours on the day still counts. The discount covers disruption and his past defiance of the Court.</dd>
+          <dt>B. Someone elected, if the vote is held: 95%</dt>
+          <dd>15 of 15 Knesset Speaker votes elected someone on the first ballot.<sup class="fn"><a href="#s1">1</a></sup> Election is by open vote; reported as a simple majority of votes cast.<sup class="fn"><a href="#s4">4</a>,<a href="#s5">5</a></sup> 59 members are committed to Kahana; Ra'am's 8 signed the request without pledging a vote; at most 53 are against.<sup class="fn"><a href="#s3">3</a>,<a href="#s6">6</a></sup></dd>
+          <dt>C. Elected by Nov 30, if not by Nov 17: 70%</dt>
+          <dd>In 2020 the Court ruled within 8 days and the vote followed within 10.<sup class="fn"><a href="#s2">2</a></sup> A failed vote can be repeated within days.</dd>
+          <dt>D. Elected by Dec 31, if not by Nov 30: 50%</dt>
+          <dd>A government cannot be sworn in before a Speaker is elected.<sup class="fn"><a href="#s4">4</a></sup> Eisenkot's deadline is Dec 6, extendable to about Dec 20.<sup class="fn"><a href="#s7">7</a></sup> No vote by Nov 30 would point to a deeper breakdown.</dd>
+        </dl>
+      </details>
+      <details class="en-q">
+        <summary>Weak points</summary>
+        <ul>
+          <li>The Joint List's support is reported to carry a condition; the report is unread.<sup class="fn"><a href="#s8">8</a></sup></li>
+          <li>Ohana controls the agenda and has defied the Supreme Court before, over the State Comptroller vote.</li>
+          <li>The vote threshold rests on secondary sources; the base rates rest mostly on Wikipedia.</li>
+          <li>There is one precedent for an outgoing Speaker facing a majority demand.</li>
+          <li>Within Nov 18-30 and within December, each sitting day carries the same chance of a vote. A postponement of a day, a court ruling, or a government-formation sitting near Eisenkot's Dec 6 or Dec 20 deadline would bunch it instead. A special sitting outside Monday to Wednesday is possible.</li>
+        </ul>
+      </details>
+      <details class="en-q">
+        <summary>Update log</summary>
+        <ul>
+          <li>2026-11-12 · Forecast drawn day by day, rising only on sitting days.</li>
+          <li>2026-11-12 · Model set: A 88%, B 95%, C 70%, D 50%.</li>
+        </ul>
+      </details>
+    </div>
+
+    <h2 id="sources">Sources</h2>
+    <ol class="sources">
+      <li id="s1"><a href="https://he.wikipedia.org/wiki/%D7%99%D7%95%D7%A9%D7%91_%D7%A8%D7%90%D7%A9_%D7%94%D7%9B%D7%A0%D7%A1%D7%AA">Hebrew Wikipedia. Speaker of the Knesset (secondary).</a></li>
+      <li id="s2"><a href="https://versa.cardozo.yu.edu/node/671">HCJ 2144/20, Movement for Quality Government v. Speaker of the Knesset (2020).</a></li>
+      <li id="s3"><a href="https://www.haaretz.com/israel-news/israel-politics/2026-11-10/ty-article/.premium/outgoing-knesset-speaker-ohana-sets-vote-on-his-successor-for-next-tuesday/000001a1-c681-df80-a9e3-e6bd1e7f0000">Haaretz, 2026-11-10. Ohana sets vote on his successor for next Tuesday.</a></li>
+      <li id="s4"><a href="https://main.knesset.gov.il/EN/activity/Documents/RulesOfProcedure/ChapterB1.pdf">Knesset Rules of Procedure, ch. B1 s. 2.</a></li>
+      <li id="s5"><a href="https://en.idi.org.il/articles/3305">Israel Democracy Institute. The Knesset Speaker.</a></li>
+      <li id="s6"><a href="https://www.timesofisrael.com/liveblog_entry/tibi-says-joint-list-will-vote-for-kahana-as-knesset-speaker-we-want-to-be-part-of-the-change/">Times of Israel. Tibi says Joint List will vote for Kahana.</a></li>
+      <li id="s7"><a href="https://main.knesset.gov.il/EN/activity/documents/BasicLawsPDF/BasicLawTheGovernment.pdf">Basic Law: The Government, ss. 8 and 13.</a></li>
+      <li id="s8"><a href="https://www.israelhayom.co.il/news/politics/article/21829310">Israel Hayom. The Joint List's demand in return for supporting replacing the Speaker (Hebrew; not read).</a></li>
+      <li id="s9"><a href="https://www.timesofisrael.com/as-war-with-iran-heats-up-knesset-scales-back-activities/">Times of Israel. The plenum's regular sittings are Monday to Wednesday.</a></li>
+    </ol>
+
+    <p class="muted" style="margin-top:28px">Last updated 2026-11-12</p>
+    <p class="muted">Nothing here is financial advice or a recommendation to trade.</p>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap foot-inner">© 2026 Temerity Ventures LLC · <a href="mailto:info@eventneutral.com">Contact</a></div>
+</footer>
+
+<script src="https://eventneutral.com/kit/v1/vendor/d3.v7.min.js"></script>
+<script src="https://eventneutral.com/kit/v1/kit.js?v=2"></script>
+<script src="model.js?v=2"></script>
+<script src="page.js?v=2"></script>
+</body>
+</html>
